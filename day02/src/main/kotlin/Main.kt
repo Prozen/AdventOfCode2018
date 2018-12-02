@@ -1,17 +1,9 @@
 import java.io.File
-import java.lang.Math.min
 
 fun main() {
     val strings = File(ClassLoader.getSystemResource("input.txt").file).readLines()
-    strings.map {
-        it.groupBy { it }
-            .mapValues { it.value.size }.run {
-                (min(1, count { it.value == 2 }) to min(1, count { it.value == 3 }))
-            }
-    }.reduce { (left1, right1), (left2, right2) ->
-        left1 + left2 to right1 + right2
-    }.run {
-        println(first * second)
+    strings.map { it.groupingBy { it }.eachCount() }.run {
+        println(count { it.containsValue(2) } * count { it.containsValue(3) })
     }
 
     (0 until strings.size).asSequence().flatMap { first ->
