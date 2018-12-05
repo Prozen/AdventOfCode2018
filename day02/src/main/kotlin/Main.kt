@@ -15,6 +15,5 @@ fun main() {
     }
 }
 
-
 fun differByOne(str1: String, str2: String) =
     (0 until str1.length).map { if (str1[it] == str2[it]) 0 else 1 }.sum() == 1
